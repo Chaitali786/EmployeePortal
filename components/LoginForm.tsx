@@ -1,85 +1,68 @@
-
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { MOCK_USERS } from "@/data/users";
-const LoginForm = () => {
- 
-   const [username, setUsername] = useState("");
+
+export default function LoginForm() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  
+  const { login } = useAuth();
+  const router = useRouter();
 
-  const matchedUser = MOCK_USERS.find(
-    (u) =>
-      u.username.toLowerCase() === username.trim().toLowerCase() &&
-      u.password === password
-  );
-
-  return (
-    <div className="w-full max-w-sm p-8 rounded-2xl bg-blue-800 backdrop-blur-md border border-white space-y-6">
-     
-      <div className="text-center space-y-1">
-        
-        <h1 className="text-2xl font-bold text-white tracking-wide">
-          Employee Portal
-        </h1>
-        <p className="text-xs text-white">
-          Sign in to access your workspace
-        </p>
-      </div>
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
 
     
-      <div className="space-y-4">
-        <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-300 ml-1">
-            Username
-          </label>
-          <input
-            type="text"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-lg bg-amber-50  text-sm "
-          />
-        </div>
+    const success = login(username, password);
 
-        <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-300 ml-1">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-lg bg-amber-50  text-sm "
-          />
-        </div>
+    if (success) {
+      
+      const matched = MOCK_USERS.find(
+        (u) => u.username.toLowerCase() === username.trim().toLowerCase()
+      );
+      router.push(`/dashboard/${matched?.username}`);
+    } else {
+      setError("Invalid username or password");
+    }
+  };
 
-        <div className="pt-2">
-          {matchedUser ? (
-            <Link
-              href={`/dashboard/${matchedUser.username}`}
-              className="block w-full py-2.5 px-4 rounded-lg bg-blue-950 text-white font-semibold text-center text-sm  "
-            >
-              Sign In as {matchedUser.name} 
-            </Link>
-          ) : (
-            <button
-              type="button"
-              disabled
-              className="block w-full py-2.5 px-4 rounded-lg bg-blue-950 text-white font-semibold text-center text-sm  "
-            >
-              Enter Valid Credentials
-            </button>
-          )}
-        </div>
+  return (
+    <form onSubmit={handleSignIn} className="w-full max-w-sm p-8 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-white/15 shadow-2xl space-y-4">
+      <div className="text-center space-y-1 mb-4">
+        <h1 className="text-2xl font-bold text-white">Employee Portal</h1>
+        <p className="text-xs text-slate-300">Sign in to access your workspace</p>
       </div>
 
-      
-    </div>
-  );
-  
-}
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="w-full px-4 py-2.5 rounded-lg bg-black/30 border border-white/10 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-400"
+        required
+      />
 
-export default LoginForm
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="w-full px-4 py-2.5 rounded-lg bg-black/30 border border-white/10 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-400"
+        required
+      />
+
+      {error && <p className="text-xs text-red-400 font-medium">{error}</p>}
+
+      <button
+        type="submit"
+        className="self-start sm:self-auto px-3.5 py-1 rounded-full text-xs font-semibold bg-cyan-500/20 border border-cyan-400/40 text-cyan-300"
+      >
+        Log In 
+      </button>
+    </form>
+  );
+}
