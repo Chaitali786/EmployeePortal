@@ -22,3 +22,8 @@ Styling: Tailwind CSS
 Data Source: DummyJSON Users API
 
 State Management: React Context API
+
+Demo Credentials:
+You can test user roles using the pre-configured credentials 
+Username: Admin  Password : test123
+
