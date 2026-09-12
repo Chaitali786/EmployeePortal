@@ -14,9 +14,9 @@ export type  CurrentUser = {
 export const MOCK_USERS: CurrentUser[] = [
   {
     savedColleagueIds:[1,2],
-    username: "Chaitali",
+    username: "Admin",
     password: "test123",
-    name: "Chaitali Deore",
+    name: "Admin",
     role: "Senior Frontend Engineer",
     department: "Engineering",
     joiningDate: "2022-03-15",
@@ -26,8 +26,8 @@ export const MOCK_USERS: CurrentUser[] = [
   },
   {
     savedColleagueIds:[3],
-    username: "Guru",
-    name: "Guru Hire ",
+    username: "User",
+    name: "User",
     password: "test123",
     role: "Growth Marketing Lead",
     department: "Marketing",
