@@ -1,37 +1,23 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+SaffronGig - Employee Directory
+A modern internal employee management portal built with Next.js (App Router), TypeScript, and Tailwind CSS. The application integrates mock user authentication with the DummyJSON API to browse company divisions, view individual colleague profiles, and manage saved team rosters.
 
-## Getting Started
+Features
+Authentication & Dashboard: Mock authentication flow using React Context. Logged-in users access a personalized dashboard with internal assignments and their department peers.
 
-First, run the development server:
+Division Exploration: Browse unique company departments dynamically parsed from user data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Colleague Profiles: Dedicated profile view for every employee (/employees/[id]) displaying contact info and role specifications.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+My Team (Saved Roster): Add or remove colleagues from your personal collaborative team with dynamic counter indicators across the navigation bar.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Tech Stack
+Framework: Next.js (App Router)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Language: TypeScript
 
-## Learn More
+Styling: Tailwind CSS
 
-To learn more about Next.js, take a look at the following resources:
+Data Source: DummyJSON Users API
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+State Management: React Context API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# EmployeePortal" 

@@ -2,19 +2,18 @@
 
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter, usePathname } from "next/navigation"; 
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const pathname = usePathname(); 
+  const pathname = usePathname();
 
   const handleLogout = () => {
     logout();
     router.push("/");
   };
 
-  
   const isLoginPage = pathname === "/login";
 
   return (
@@ -50,9 +49,12 @@ export default function Navbar() {
       <div className="flex items-center gap-3">
         {user ? (
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-300 hidden sm:inline">
+            <Link
+              href="/dashboard"
+              className="text-xs text-slate-300 hover:text-cyan-400 underline-offset-4 hover:underline transition hidden sm:inline"
+            >
               {user.name} ({user.department})
-            </span>
+            </Link>
             <button
               onClick={handleLogout}
               className="text-xs px-3 py-1.5 rounded-lg bg-red-950 border border-red-800 text-red-300 hover:bg-red-700 hover:text-white transition"
@@ -61,7 +63,6 @@ export default function Navbar() {
             </button>
           </div>
         ) : (
-          
           !isLoginPage && (
             <Link
               href="/login"

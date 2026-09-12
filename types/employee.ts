@@ -5,8 +5,15 @@ export type Employee = {
   email: string;
   phone: string;
   image: string;
-  role?: string;
-  company: {
-    department: string;
+  company?: {
+    name?: string;
+    department?: string;
+    title?: string;
+  };
+  address?: {
+    address?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
   };
 }

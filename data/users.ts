@@ -1,5 +1,5 @@
 export type  CurrentUser = {
-  savedColleagueIds: any;
+  savedColleagueIds: number[];
   username: string;
   password: string;
   name: string;
@@ -13,7 +13,7 @@ export type  CurrentUser = {
 
 export const MOCK_USERS: CurrentUser[] = [
   {
-    savedColleagueIds:"01",
+    savedColleagueIds:[1,2],
     username: "Chaitali",
     password: "test123",
     name: "Chaitali Deore",
@@ -25,7 +25,7 @@ export const MOCK_USERS: CurrentUser[] = [
     
   },
   {
-    savedColleagueIds:"02",
+    savedColleagueIds:[3],
     username: "Guru",
     name: "Guru Hire ",
     password: "test123",
